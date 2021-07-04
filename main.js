@@ -5,7 +5,7 @@ function init(){
 
 	//khởi tạo gui và đặt tên cho gui để đặt vị trí trong style.css
 	gui = new dat.GUI( { autoPlace: false } );
-    $('.moveGUI').append($(gui.domElement));
+    	$('.moveGUI').append($(gui.domElement));
 
 	// Tạo nền với kích thước và bề mặt truyền vào
 	var plane = new THREE.Mesh(GetGeometry('Plane'),GetMaterial('Phong'));
@@ -18,7 +18,7 @@ function init(){
 	//khởi tạo container cố định chứa vật thể và áp dụng các transformControls và animation
 	//làm material của container trong suốt để thấy được vật thể bên trong
 	Container = GetSurface(GetGeometry('Box'), GetMaterial('Solid'), 'Solid');
-    Container.material.transparent = true;
+    	Container.material.transparent = true;
 	Container.material.opacity = 0;
 	// Tạo vật thể với tùy chọn hình dạng và bề mặt
 	var ObjectOne = GetSurface(GetGeometry('Box'), GetMaterial('Solid'), 'Solid');
