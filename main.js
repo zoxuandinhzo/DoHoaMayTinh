@@ -437,6 +437,7 @@ function loadNew(ObjectNew, ObjectOld){
 	ObjectNew.rotation.copy(ObjectOld.rotation);
 	ObjectNew.scale.copy(ObjectOld.scale);
 	ObjectNew.name = ObjectOld.name;
+	ObjectNew.castShadow = true;
 
 	//dọn sạch object cũ
 	Container.remove(ObjectOld);
