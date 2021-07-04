@@ -206,7 +206,7 @@ function init(){
 		sound.setBuffer( buffer );
 		sound.setLoop(true);
 		sound.setVolume( 1 );
-		sound.pause();});
+		sound.play();});
 	audioLoader.autoplay = false;
 	
 	ResetObject();
@@ -496,7 +496,7 @@ function SetLight(){
 	scene.getObjectByName('light').visible = true;
 
 	//thay đổi lại material của object thành Phong để không tự phát sáng như basic
-	scene.getObjectByName('objectOne').material = GetMaterial("Phong");
+	Container.getObjectByName('objectOne').material = GetMaterial("Phong");
 
 	//hiển thị nền để tạo shadow
 	scene.getObjectByName('plane').visible = true;
@@ -508,7 +508,7 @@ function RemoveLight(){
 	scene.getObjectByName('light').visible = false;
 
 	//thay đổi lại material của object thành basic để tự phát
-	scene.getObjectByName('objectOne').material = GetMaterial("Solid");
+	Container.getObjectByName('objectOne').material = GetMaterial("Solid");
 
 	//ẩn nền
 	scene.getObjectByName('plane').visible = false;
