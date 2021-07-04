@@ -34,7 +34,7 @@ function init(){
 			],
 		easing: 'linear',
 		loop: true,
-		autoplay: false,
+		autoplay: true,
 		direction: 'normal'
 	})
 
