@@ -206,7 +206,7 @@ function init(){
 		sound.setBuffer( buffer );
 		sound.setLoop(true);
 		sound.setVolume( 1 );
-		sound.pause();});
+		sound.play();});
 	audioLoader.autoplay = false;
 	
 	ResetObject();
