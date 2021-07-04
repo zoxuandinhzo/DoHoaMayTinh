@@ -1,0 +1,81 @@
+/* Navbar container */
+.navbar {
+  /* overflow: hidden; */
+  background-color: #333;
+  font-family: Arial;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.moveGUI{
+  position: absolute;
+  top: 56px;
+  right: 0px;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  font-family: Arial;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  background: white;
+  text-emphasis-color: black;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a{
+  color: black;
+}
+
+.dropdown-menu a:hover{
+  background-color: #A0B8C3;
+}
+
+.button {
+  height: 30px;
+  width: 30px;
+  background: white;
+  border: none;
+  outline: none;
+  border-radius: 10%;
+  margin: 5px;
+  margin-left: 10px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  height: 30px;
+  background: white;
+  border: none;
+  outline: none;
+  border-radius: 10%;
+  margin: 5px;
+  padding: 2px 3px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  display: block;
+  position: fixed;
+  top: 80px;
+  left: 25px;
+  width: 50px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}

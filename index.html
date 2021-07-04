@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- <meta charset="utf-8"> -->
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+		<title>Final_JS.js app</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+		<link rel="stylesheet" href="./source/css/style.css" type="text/css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	</head>
+
+	<body>
+		<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+			<a class="narvar-brand font-weight-bold" id="demo" href="demoh">DEMO ĐỒ HỌA MÁY TÍNH</a>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			  	<ul class="navbar-nav mx-auto">
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown">Geometry</a>
+
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#" onclick="SetGeometry(1);">Box</a>
+							<a class="dropdown-item" href="#" onclick="SetGeometry(2);">Circle</a>
+							<a class="dropdown-item" href="#" onclick="SetGeometry(3);">Sphere</a>
+							<a class="dropdown-item" href="#" onclick="SetGeometry(4);">Cone</a>
+							<a class="dropdown-item" href="#" onclick="SetGeometry(5);">Cylinder</a>
+							<a class="dropdown-item" href="#" onclick="SetGeometry(6);">Octahedron</a>
+							<a class="dropdown-item" href="#" onclick="SetGeometry(7);">Ring</a>
+							<a class="dropdown-item" href="#" onclick="SetGeometry(8);">Plane</a>
+							<a class="dropdown-item" href="#" onclick="SetGeometry(9);">Torus</a>
+							<a class="dropdown-item" href="#" onclick="SetGeometry(10);">TeaPot</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Surface
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#" onclick="SetSurface(1);">Point</a>
+							<a class="dropdown-item" href="#" onclick="SetSurface(2);">Line</a>
+							<a class="dropdown-item" href="#" onclick="SetSurface(3);">Solid</a>
+							<a class="dropdown-item" href="#" onclick="SetSurface(4);">Select texture</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Light
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#" onclick="SetLight();">Point Light</a>
+							<a class="dropdown-item" href="#" onclick="RemoveLight();">Remove Light</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown">Animation</a>
+
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#" onclick="SetAnimation(1);">Animation 1</a>
+							<a class="dropdown-item" href="#" onclick="SetAnimation(2);">Animation 2</a>
+							<a class="dropdown-item" href="#" onclick="SetAnimation(3);">Animation 3</a>
+							<a class="dropdown-item" href="#" onclick="SetAnimation(4);">Remove Animation</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown">Music</a>
+
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#" onclick="PlayMusic(1);">Music 1</a>
+							<a class="dropdown-item" href="#" onclick="PlayMusic(2);">Music 2</a>
+							<a class="dropdown-item" href="#" onclick="PlayMusic(3);">Music 3</a>
+							<a class="dropdown-item" href="#" onclick="SelecteMusic();">Select file music</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<input id="file-input" type="file" name="file-input" style="display: none;" accept="image/*"/>
+		<input id="music-input" type="file" name="music-input" style="display: none;" accept="audio/*"/>
+
+		<div class="button-container">
+			<button type="button" class="button" onclick="SetMusic();">
+				<a id="mute"><i class="fas fa-volume-up"></i></a>
+			</button>
+			<button type="button" class="button" onclick="SetTranformMode(1);">
+				<i class="fas fa-arrows-alt"></i>
+			</button>
+			<button type="button" class="button" onclick="SetTranformMode(2);">
+				<i class="fas fa-sync-alt"></i>
+			</button>
+			<button type="button" class="button" onclick="SetTranformMode(3);">
+				<i class="fas fa-expand-arrows-alt"></i>
+			</button>
+			<button type="button" class="btn" onclick="ResetObject();">Reset</button>
+		</div>
+		
+		<div  class = 'moveGUI'>
+		</div>
+
+		<div id="webgl"></div>
+		<script src="./build/dat.gui.min.js"></script>
+		<script src="./build/three.js"></script>
+		<script src="./build/OBJLoader.js"></script>
+		<script src="./build/OrbitControls.js"></script>
+		<script src= "./build/TeapotGeometry.js"></script>
+		<script src="./build/TransformControls.js"></script>
+		<script src="./build/anime.min.js"></script>
+		<script src="./main.js"></script>
+
+	</body>
+</html>
