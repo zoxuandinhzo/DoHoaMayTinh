@@ -15,14 +15,20 @@ function init(){
 	plane.visible = false;
 	scene.add(plane);
 
+	//khởi tạo container cố định chứa vật thể và áp dụng các transformControls và animation
+	//làm material của container trong suốt để thấy được vật thể bên trong
+	Container = GetSurface(GetGeometry('Box'), GetMaterial('Solid'), 'Solid');
+    Container.material.transparent = true;
+	Container.material.opacity = 0;
 	// Tạo vật thể với tùy chọn hình dạng và bề mặt
 	var ObjectOne = GetSurface(GetGeometry('Box'), GetMaterial('Solid'), 'Solid');
 	ObjectOne.name = "objectOne";
 	ObjectOne.castShadow = true;
-	scene.add(ObjectOne);
+	Container.add(ObjectOne);
+	scene.add(Container);
 
 	animation1 = anime.timeline({
-		targets: ObjectOne.position,
+		targets: Container.position,
 		keyframes: [
 			{x: 5, z:-5, duration: 0},
 			{z: 5, duration: 2000},
@@ -39,7 +45,7 @@ function init(){
 	})
 
 	animation1.add({
-		targets: ObjectOne.rotation,
+		targets: Container.rotation,
 		keyframes: [
 			{x: Math.PI*2},
 			{z: Math.PI*2},
@@ -50,7 +56,7 @@ function init(){
 	}, 0);
 
 	animation1.add({
-		targets: ObjectOne.position,
+		targets: Container.position,
 		keyframes: [
 			{y: 4, duration: 1000, easing: 'easeInBounce'},
 			{y: 0, duration: 1000, easing: 'easeOutBounce'}],
@@ -58,7 +64,7 @@ function init(){
 	}, 0);
 
 	animation1.add({
-		targets: ObjectOne.position,
+		targets: Container.position,
 		keyframes: [
 			{y: -4, duration: 800, easing: 'easeOutCubic'},
 			{y: 1.5, duration: 700, easing: 'easeInCubic'},
@@ -67,7 +73,7 @@ function init(){
 	}, 2000);
 
 	animation1.add({
-		targets: ObjectOne.position,
+		targets: Container.position,
 		keyframes: [
 			{y: -3, duration: 200, easing: 'easeOutQuad'},
 			{y: 3, duration: 500, easing: 'easeOutQuad'},
@@ -78,7 +84,7 @@ function init(){
 	}, 4000);
 
 	animation2 = anime.timeline({
-		targets: ObjectOne.scale,
+		targets: Container.scale,
 		keyframes: [
 			{x: 3, z: 2, y:-3},
 			{x: 1, z: -2, y: 3},
@@ -91,7 +97,7 @@ function init(){
 	});
 
 	animation2.add({
-		targets: ObjectOne.position,
+		targets: Container.position,
 		keyframes: [
 			{x: 0, y: 0, z: 0, duration: 0},
 			{x: 5},
@@ -104,7 +110,7 @@ function init(){
 	}, 0);
 
 	animation3 = anime.timeline({
-		targets: ObjectOne.position,
+		targets: Container.position,
 		keyframes: [
 			{x: 0, y: 0, z: 0, duration: 0},
 			{y: 5, duration: 1500}],
@@ -115,7 +121,7 @@ function init(){
 	});
 
 	animation3.add({
-		targets: ObjectOne.rotation,
+		targets: Container.rotation,
 		y: Math.PI*2,
 		duration: 1500,
 		easing: 'linear'
@@ -187,7 +193,7 @@ function init(){
 	
 	transformControls.mode = 'translate'; // rotate & translate & scale are code at here.
 	transformControls.setMode('translate');	//"translate", "rotate" and "scale". Default is translate.
-	transformControls.attach(ObjectOne);
+	transformControls.attach(Container);
 	scene.add(transformControls);
 
 	// For Fun
@@ -200,7 +206,7 @@ function init(){
 		sound.setBuffer( buffer );
 		sound.setLoop(true);
 		sound.setVolume( 1 );
-		sound.play();});
+		sound.pause();});
 	audioLoader.autoplay = false;
 	
 	ResetObject();
@@ -389,7 +395,7 @@ function update(renderer,scene,camera,controls){
 }
 
 function SetGeometry(type){
-	var ObjectOne = scene.getObjectByName('objectOne');
+	var ObjectOne = Container.getObjectByName('objectOne');
 	switch(type)
 	{
 		case 1:
@@ -431,18 +437,17 @@ function loadNew(ObjectNew, ObjectOld){
 	ObjectNew.rotation.copy(ObjectOld.rotation);
 	ObjectNew.scale.copy(ObjectOld.scale);
 	ObjectNew.name = ObjectOld.name;
-	transformControls.attach(ObjectNew);
 
 	//dọn sạch object cũ
-	scene.remove(ObjectOld);
+	Container.remove(ObjectOld);
 	ObjectOld.geometry.dispose();
     ObjectOld.material.dispose();
 
-	scene.add(ObjectNew);
+	Container.add(ObjectNew);
 }
 
 function SetSurface(type){
-	var ObjectOld = scene.getObjectByName('objectOne');
+	var ObjectOld = Container.getObjectByName('objectOne');
 	var ObjectNew;
 	var url;
 	switch(type)
@@ -542,8 +547,8 @@ function SetAnimation(type){
 			animation2.pause();
 			break;
 		case 4:
-			scene.getObjectByName('objectOne').position.set(0, 0, 0);
-			scene.getObjectByName('objectOne').rotation.set(0, 0, 0);
+			Container.getObjectByName('objectOne').position.set(0, 0, 0);
+			Container.getObjectByName('objectOne').rotation.set(0, 0, 0);
 			transformControls.visible = true;
 			animation1.pause();
 			animation2.pause();
@@ -553,13 +558,12 @@ function SetAnimation(type){
 }
 
 function ResetObject(){
-	var objectOne = scene.getObjectByName('objectOne');
-	objectOne.position.set(0,0,0);
-	objectOne.rotation.set(0,0,0);
-	objectOne.scale.set(1,1,1);
+	Container.position.set(0,0,0);
+	Container.rotation.set(0,0,0);
+	Container.scale.set(1,1,1);
 }
 
-var scene, transformControls, lightGUI;
+var scene, Container, transformControls, lightGUI;
 var audioLoader, sound, music = 1;
 var animation1, animation2, animation3;
 init();
