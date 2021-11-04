@@ -202,7 +202,7 @@ function init(){
 	sound = new THREE.Audio( listener );
 
 	audioLoader = new THREE.AudioLoader();
-	audioLoader.load( './assests/sounds/DDD.mkv', function( buffer ) {
+	audioLoader.load( './assets/sounds/DDD.mkv', function( buffer ) {
 		sound.setBuffer( buffer );
 		sound.setLoop(true);
 		sound.setVolume( 1 );
@@ -230,7 +230,7 @@ function PlayMusic(type, url){
 	switch(type){
 		case 1:
 			sound.stop();
-			audioLoader.load( './assests/sounds/DDD.mkv', function( buffer ) {
+			audioLoader.load( './assets/sounds/DDD.mkv', function( buffer ) {
 				sound.setBuffer( buffer );
 				sound.setLoop(true);
 				sound.setVolume( 1 );
@@ -239,7 +239,7 @@ function PlayMusic(type, url){
 			break;
 		case 2:
 			sound.stop();
-			audioLoader.load( './assests/sounds/laylalay.mp3', function( buffer ) {
+			audioLoader.load( './assets/sounds/laylalay.mp3', function( buffer ) {
 				sound.setBuffer( buffer );
 				sound.setLoop(true);
 				sound.setVolume( 1 );
@@ -247,7 +247,7 @@ function PlayMusic(type, url){
 			break;
 		case 3:
 			sound.stop();
-			audioLoader.load( './assests/sounds/VachNgocNga.mp3', function( buffer ) {
+			audioLoader.load( './assets/sounds/VachNgocNga.mp3', function( buffer ) {
 				sound.setBuffer( buffer );
 				sound.setLoop(true);
 				sound.setVolume( 1 );
@@ -264,7 +264,7 @@ function PlayMusic(type, url){
 	}
 }
 
-function SelecteMusic(){
+function SelectMusic(){
 	var input = document.getElementById('music-input');
 	input.onchange = e => {
 		var file = e.target.files[0]; 
@@ -515,7 +515,7 @@ function RemoveLight(){
 	scene.getObjectByName('plane').visible = false;
 }
 
-function SetTranformMode(type){
+function SetTransformMode(type){
 	switch(type)
 	{
 		case 1: transformControls.mode = 'translate';
